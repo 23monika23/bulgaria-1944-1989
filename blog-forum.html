@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Блог статии и форум за историята на България 1944–1989 г. Споделете знанията и мненията си.">
+    <title>Блог и Форум | България 1944–1989</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .blog-forum-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2.5rem;
+            align-items: start;
+        }
+        .sticky-sidebar { position: sticky; top: calc(var(--nav-height) + 1.5rem); }
+
+        /* Blog full post modal simulation */
+        .post-excerpt-more { display: none; }
+        .post-excerpt-more.open { display: block; }
+
+        /* Newsletter box */
+        .newsletter-box {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 8px;
+            padding: 1.8rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        .newsletter-box h3 { color: var(--accent); margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .newsletter-box p { font-size: 0.88rem; color: rgba(255,255,255,0.75); margin-bottom: 1rem; }
+        .newsletter-input {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .newsletter-input input {
+            flex: 1;
+            padding: 0.6rem 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.88rem;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            outline: none;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .newsletter-input input::placeholder { color: rgba(255,255,255,0.5); }
+        .newsletter-input input:focus { border-color: var(--accent); }
+
+        /* Popular tags */
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+        }
+        .tag-link {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text-light);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 3px;
+            text-decoration: none;
+            transition: all 0.2s;
+            letter-spacing: 0.05em;
+        }
+        .tag-link:hover { background: var(--accent-light); border-color: var(--accent); color: var(--secondary); }
+
+        /* Recent posts sidebar */
+        .recent-post {
+            display: flex;
+            gap: 0.8rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: flex-start;
+        }
+        .recent-post:last-child { border-bottom: none; }
+        .recent-post img {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border-radius: 5px;
+            filter: sepia(0.3);
+            flex-shrink: 0;
+        }
+        .recent-post-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.88rem;
+            color: var(--secondary);
+            line-height: 1.3;
+            margin-bottom: 0.2rem;
+        }
+        .recent-post-date {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            color: var(--text-light);
+            letter-spacing: 0.06em;
+        }
+
+        /* Forum user badge */
+        .user-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            background: var(--accent-light);
+            color: var(--secondary);
+            padding: 0.15rem 0.6rem;
+            border-radius: 3px;
+            letter-spacing: 0.08em;
+        }
+
+        /* Contact section */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        @media (max-width: 960px) {
+            .blog-forum-layout { grid-template-columns: 1fr; }
+            .sticky-sidebar { position: static; }
+            .contact-layout { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="announcement-bar">
+    🎓 <strong>Образователен ресурс</strong> — България в епохата на социализма &nbsp;|&nbsp; 1944–1989 г.
+</div>
+
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <svg class="logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="60" rx="8" fill="#1a2540"/>
+                <rect x="5" y="5" width="50" height="50" rx="6" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.5"/>
+                <polygon points="30,5 33.5,18 47,18 36,27 39.5,40 30,31.5 20.5,40 24,27 13,18 26.5,18" fill="#c9a84c"/>
+                <text x="30" y="55" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="bold" fill="white" letter-spacing="2">НРБ</text>
+            </svg>
+            <div class="logo-text">България<span>1944 – 1989</span></div>
+        </a>
+        <button class="nav-toggle" aria-label="Меню"><span></span><span></span><span></span></button>
+        <ul class="nav-links">
+            <li><a href="index.html">Начало</a></li>
+            <li><a href="history.html">Хронология</a></li>
+            <li><a href="politics.html">Политика</a></li>
+            <li><a href="culture.html">Икономика и Култура</a></li>
+            <li><a href="blog-forum.html" class="active">Блог и Форум</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-header">
+    <div class="page-header-content">
+        <p class="breadcrumb"><a href="index.html">Начало</a> <span>›</span> Блог и Форум</p>
+        <h1>Блог и Форум</h1>
+        <p style="color:rgba(255,255,255,0.65);font-family:'Playfair Display',serif;font-style:italic;margin-top:0.5rem;">Статии, дискусии и обратна връзка от нашата общност</p>
+    </div>
+</div>
+
+<!-- ===== BLOG + SIDEBAR ===== -->
+<section class="section">
+    <div class="container">
+
+        <!-- Tab navigation -->
+        <div style="display:flex;gap:0;margin-bottom:2.5rem;border-bottom:2px solid var(--border);">
+            <button onclick="showTab('blog')" id="tab-blog" style="font-family:'Oswald',sans-serif;font-size:0.9rem;letter-spacing:0.1em;padding:0.8rem 2rem;background:none;border:none;border-bottom:3px solid var(--accent);cursor:pointer;color:var(--secondary);font-weight:600;margin-bottom:-2px;">БЛОГ СТАТИИ</button>
+            <button onclick="showTab('forum')" id="tab-forum" style="font-family:'Oswald',sans-serif;font-size:0.9rem;letter-spacing:0.1em;padding:0.8rem 2rem;background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;color:var(--text-light);margin-bottom:-2px;transition:all 0.2s;">ФОРУМ</button>
+        </div>
+
+        <!-- ===== BLOG TAB ===== -->
+        <div id="content-blog">
+            <div class="blog-forum-layout">
+                <div>
+
+                    <!-- Post 1 -->
+                    <article class="blog-post">
+                        <div class="blog-post-img-wrap">
+                            <img class="blog-post-img" src="https://picsum.photos/seed/post9sept/400/350" alt="9 септември 1944">
+                        </div>
+                        <div class="blog-post-body">
+                            <div class="blog-meta">
+                                <span class="blog-tag">История</span>
+                                <span>12 септември 2024</span>
+                                <span>от <strong>д-р Иван Петров</strong></span>
+                            </div>
+                            <h2>9 септември 1944 — преврат или революция?</h2>
+                            <p>Денят, на който Отечественият фронт завзема властта, e от десетилетия предмет на остри историографски спорове. Как трябва да го назоваваме — преврат, революция или „народновластна промяна"? Отговорът зависи не само от историческата интерпретация, но и от политическата гледна точка.</p>
+                            <p>За комунистическата историография 9 септември е „народна въоръжена революция" — кулминация на класовата борба и партизанското движение. За критичната историография след 1989 г. събитието е преди всичко военен преврат, извършен с пряката помощ на навлизащата в страната Съветска армия, която по същество прави съпротива невъзможна.</p>
+                            <div class="post-excerpt-more">
+                                <p>Истината — като почти всичко в историята — е по-сложна. Наистина е налице Отечественофронтовски преврат срещу правителството на Муравиев, и наистина без Червената армия успехът му е съмнителен. Но партизанското движение е реален фактор, обществената умора от войната и прогерманската политика — неоспорима. Партията разчита на широка обществена подкрепа в определени слоеве — работниците, безземлените, интелигенцията с леви убеждения.</p>
+                                <p>Значението на тази терминологична дискусия надхвърля академичните среди. Тя определя как обществото разбира легитимността на режима, какво е направено с „наследството" на прехода и как се гради националната памет.</p>
+                            </div>
+                            <div class="blog-actions">
+                                <button class="like-btn">♥ <span class="like-count">47</span> харесвания</button>
+                                <button class="btn btn-sm btn-dark" onclick="toggleReadMore(this)" style="font-size:0.78rem;">Прочети повече</button>
+                                <span class="comment-count">💬 12 коментара</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 2 -->
+                    <article class="blog-post">
+                        <div class="blog-post-img-wrap">
+                            <img class="blog-post-img" src="https://picsum.photos/seed/post-zhivkov/400/350" alt="Тодор Живков">
+                        </div>
+                        <div class="blog-post-body">
+                            <div class="blog-meta">
+                                <span class="blog-tag">Лидери</span>
+                                <span>28 октомври 2024</span>
+                                <span>от <strong>проф. Мария Стоянова</strong></span>
+                            </div>
+                            <h2>Живков — прагматик или сталинист?</h2>
+                            <p>Тодор Живков управлява България по-дълго от всеки друг лидер в Источния блок — 35 години. Оценките за неговото управление са крайно противоречиви: от „модернизатор на социализма" до „послушен изпълнител на Москва". Кой е истинският Живков?</p>
+                            <p>За да разберем Живков, трябва да го поставим в контекста на времето. Той не идва на власт като идеолог — идва като апаратчик, умеещ да балансира между интересите. Неговата „специфика" — опитите за икономически реформи в духа на „третия курс" (нито СССР, нито Запада) — никога не се реализира напълно.</p>
+                            <div class="post-excerpt-more">
+                                <p>Той е безспорно отговорен за Възродителния процес (1984–89) — акт, осъден от международната общност и оставил трайна рана в българско-турските отношения. В същото время под неговото ръководство България постига реален ръст на жизнения стандарт — в сравнение с предишните периоди на репресии и аскетизъм.</p>
+                                <p>Може би най-точната характеристика е: Живков е прагматичен оцелял — лидер, поставящ личната власт над идеологията, способен да прегъне курса при нужда, но неспособен или нежелаещ да направи истинска реформа.</p>
+                            </div>
+                            <div class="blog-actions">
+                                <button class="like-btn">♥ <span class="like-count">63</span> харесвания</button>
+                                <button class="btn btn-sm btn-dark" onclick="toggleReadMore(this)" style="font-size:0.78rem;">Прочети повече</button>
+                                <span class="comment-count">💬 24 коментара</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 3 -->
+                    <article class="blog-post">
+                        <div class="blog-post-img-wrap">
+                            <img class="blog-post-img" src="https://picsum.photos/seed/vazroditelen/400/350" alt="Възродителен процес">
+                        </div>
+                        <div class="blog-post-body">
+                            <div class="blog-meta">
+                                <span class="blog-tag">Малцинства</span>
+                                <span>5 ноември 2024</span>
+                                <span>от <strong>д-р Ахмед Мустафов</strong></span>
+                            </div>
+                            <h2>Възродителният процес — историческата истина</h2>
+                            <p>Между 1984 и 1989 г. около 850 000 етнически турци и мюсюлмани в България са принудени да сменят имената си с български. Операцията, наречена вътрешно „Възродителен процес", остава едно от най-мрачните и слабо познати престъпления на режима.</p>
+                            <p>Официалната обосновка — абсурдна от историческа гледна точка — твърди, че турците всъщност са „ославянени" прабългари, и преименуването е „завръщане към корените". Реалността е различна: властта се страхува от демографския ръст на мюсюлманското население и търси националистическо сплотяване около „чистата" българска идентичност.</p>
+                            <div class="post-excerpt-more">
+                                <p>Последствията са катастрофални: лятото на 1989 г. дава началото на „Голямата екскурзия" — повече от 360 000 етнически турци заминават за Турция за броени седмици. Страната губи квалифицирани работници от тютюнопроизводителния и земеделски сектор. Някои от изселените се завръщат след 1990 г., но белегът остава.</p>
+                                <p>Днес Възродителният процес е официално осъден от Народното събрание на Република България. Историческата истина е ясна: той представлява груба политика на етническо прочистване, несъвместима с никакви хуманистични ценности.</p>
+                            </div>
+                            <div class="blog-actions">
+                                <button class="like-btn">♥ <span class="like-count">89</span> харесвания</button>
+                                <button class="btn btn-sm btn-dark" onclick="toggleReadMore(this)" style="font-size:0.78rem;">Прочети повече</button>
+                                <span class="comment-count">💬 38 коментара</span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- SIDEBAR -->
+                <aside class="sticky-sidebar">
+                    <!-- Newsletter -->
+                    <div class="newsletter-box">
+                        <h3>📬 Абонирай се</h3>
+                        <p>Получавай нови статии и новини от сайта директно в имейла си.</p>
+                        <div class="newsletter-input">
+                            <input type="email" placeholder="твоят@email.com">
+                            <button class="btn btn-primary btn-sm">ОК</button>
+                        </div>
+                    </div>
+
+                    <!-- Recent posts -->
+                    <div style="background:var(--bg-card);border-radius:8px;padding:1.5rem;box-shadow:var(--shadow-sm);margin-bottom:1.5rem;">
+                        <h4 style="font-family:'Oswald',sans-serif;font-size:0.85rem;letter-spacing:0.15em;color:var(--accent);text-transform:uppercase;margin-bottom:1rem;">Последни статии</h4>
+                        <div class="recent-post">
+                            <img src="https://picsum.photos/seed/recent1/80/80" alt="">
+                            <div>
+                                <div class="recent-post-title">Трудовите лагери в НРБ — свидетелства</div>
+                                <div class="recent-post-date">2 ноември 2024</div>
+                            </div>
+                        </div>
+                        <div class="recent-post">
+                            <img src="https://picsum.photos/seed/recent2/80/80" alt="">
+                            <div>
+                                <div class="recent-post-title">Кремиковци — от гордост до руина</div>
+                                <div class="recent-post-date">18 октомври 2024</div>
+                            </div>
+                        </div>
+                        <div class="recent-post">
+                            <img src="https://picsum.photos/seed/recent3/80/80" alt="">
+                            <div>
+                                <div class="recent-post-title">Людмила Живкова и изкуството</div>
+                                <div class="recent-post-date">5 октомври 2024</div>
+                            </div>
+                        </div>
+                        <div class="recent-post">
+                            <img src="https://picsum.photos/seed/recent4/80/80" alt="">
+                            <div>
+                                <div class="recent-post-title">Правецки компютри — технологичният мит</div>
+                                <div class="recent-post-date">22 септември 2024</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tags -->
+                    <div style="background:var(--bg-card);border-radius:8px;padding:1.5rem;box-shadow:var(--shadow-sm);margin-bottom:1.5rem;">
+                        <h4 style="font-family:'Oswald',sans-serif;font-size:0.85rem;letter-spacing:0.15em;color:var(--accent);text-transform:uppercase;margin-bottom:0.8rem;">Тагове</h4>
+                        <div class="tags-cloud">
+                            <a href="#" class="tag-link">БКП</a>
+                            <a href="#" class="tag-link">Живков</a>
+                            <a href="#" class="tag-link">9 септември</a>
+                            <a href="#" class="tag-link">Репресии</a>
+                            <a href="#" class="tag-link">ДС</a>
+                            <a href="#" class="tag-link">Индустриализация</a>
+                            <a href="#" class="tag-link">ТКЗС</a>
+                            <a href="#" class="tag-link">Възродителен процес</a>
+                            <a href="#" class="tag-link">Кремиковци</a>
+                            <a href="#" class="tag-link">НРБ</a>
+                            <a href="#" class="tag-link">Студена война</a>
+                            <a href="#" class="tag-link">Белене</a>
+                        </div>
+                    </div>
+
+                    <!-- About box -->
+                    <div style="background:var(--bg-card);border-radius:8px;padding:1.5rem;box-shadow:var(--shadow-sm);">
+                        <h4 style="font-family:'Oswald',sans-serif;font-size:0.85rem;letter-spacing:0.15em;color:var(--accent);text-transform:uppercase;margin-bottom:0.8rem;">За сайта</h4>
+                        <p style="font-size:0.88rem;color:var(--text-light);">Този образователен ресурс е посветен на изследването на историята на НРБ. Публикуваните материали имат академичен характер и не пропагандират никаква идеология.</p>
+                        <a href="#contact" class="btn btn-dark btn-sm" style="margin-top:1rem;display:inline-block;">Свържете се с нас</a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- ===== FORUM TAB ===== -->
+        <div id="content-forum" style="display:none;">
+
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+                <p style="color:var(--text-light);font-size:0.92rem;">Присъединете се към дискусията. Регистрацията не е необходима — пишете директно!</p>
+                <button class="btn btn-primary btn-sm" onclick="document.getElementById('new-topic-form').classList.toggle('open')">+ Нова тема</button>
+            </div>
+
+            <!-- New topic form -->
+            <div id="new-topic-form" style="display:none;background:var(--bg-card);border-radius:8px;padding:1.5rem;box-shadow:var(--shadow-sm);margin-bottom:2rem;border-top:3px solid var(--accent);">
+                <h3 style="font-size:1.1rem;margin-bottom:1rem;">Нова тема</h3>
+                <div class="form-group"><label>Заглавие</label><input type="text" placeholder="Заглавие на темата..."></div>
+                <div class="form-group"><label>Категория</label>
+                    <select>
+                        <option>Обща история</option>
+                        <option>Политика и власт</option>
+                        <option>Икономика</option>
+                        <option>Личен спомен</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Съобщение</label><textarea placeholder="Споделете мнението или въпроса си..."></textarea></div>
+                <button class="btn btn-primary">Публикувай темата</button>
+            </div>
+
+            <!-- Forum Categories -->
+            <div class="forum-section">
+
+                <!-- Category 1 -->
+                <div class="forum-category">
+                    <div class="forum-category-header">
+                        <span style="font-size:1.4rem;">📜</span>
+                        <h4>Обща история на НРБ</h4>
+                        <span style="margin-left:auto;font-family:'Oswald',sans-serif;font-size:0.78rem;color:var(--text-light);letter-spacing:0.06em;">12 теми · 87 отговора</span>
+                    </div>
+
+                    <div class="forum-thread-row">
+                        <div>
+                            <div class="forum-thread-title">Как се е живеело в НРБ — спомени и сравнения</div>
+                            <div class="forum-thread-meta">
+                                <span>от <strong>istorik_bg</strong></span>
+                                <span>последен отговор: 14 ноем. 2024</span>
+                                <span class="user-badge">⭐ Модератор</span>
+                            </div>
+                        </div>
+                        <div class="forum-stats"><span class="count">34</span>отговора</div>
+                    </div>
+                    <div class="forum-reply-thread">
+                        <div class="comments-wrap">
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="comment-avatar">ИГ</div>
+                                    <span class="comment-author">istorik_bg</span>
+                                    <span class="user-badge">⭐ Модератор</span>
+                                    <span class="comment-date">3 ноем. 2024</span>
+                                </div>
+                                <p>Много хора спомнят, че животът не е бил само пропаганда и страх. Имало е и истинска общност, чувство за сигурност, макар и принудена. Какви са вашите спомени или тези на близките ви?</p>
+                            </div>
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="comment-avatar">МП</div>
+                                    <span class="comment-author">mlada_pенsioner</span>
+                                    <span class="comment-date">7 ноем. 2024</span>
+                                </div>
+                                <p>Баба ми разказваше, че наемът им е бил символичен, детската градина — безплатна, лятото са ходили на море с профсъюза. Но никога не е говорила открито за политика — страхът е бил дълбоко всаден.</p>
+                            </div>
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="comment-avatar">ТС</div>
+                                    <span class="comment-author">todor_stoilov</span>
+                                    <span class="comment-date">14 ноем. 2024</span>
+                                </div>
+                                <p>Нека не идеализираме. Моят дядо е прекарал три години в Белене за „антисоциалистически изказвания". Семейството му е живяло в постоянен страх и след освобождаването. Това е другата страна на монетата.</p>
+                            </div>
+                        </div>
+                        <div class="reply-form-mini" style="margin-top:1.5rem;">
+                            <label style="font-family:'Oswald',sans-serif;font-size:0.78rem;letter-spacing:0.1em;color:var(--text-light);display:block;margin-bottom:0.5rem;">ДОБАВИ КОМЕНТАР</label>
+                            <textarea placeholder="Напишете отговора си..."></textarea>
+                            <button class="btn btn-primary btn-sm reply-submit-btn" style="margin-top:0.5rem;">Публикувай</button>
+                        </div>
+                    </div>
+
+                    <div class="forum-thread-row">
+                        <div>
+                            <div class="forum-thread-title">9 септември — как го отбелязваме днес?</div>
+                            <div class="forum-thread-meta">
+                                <span>от <strong>vesela_h</strong></span>
+                                <span>последен отговор: 10 ноем. 2024</span>
+                            </div>
+                        </div>
+                        <div class="forum-stats"><span class="count">18</span>отговора</div>
+                    </div>
+                    <div class="forum-reply-thread">
+                        <div class="comments-wrap">
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="comment-avatar">ВХ</div>
+                                    <span class="comment-author">vesela_h</span>
+                                    <span class="comment-date">8 ноем. 2024</span>
+                                </div>
+                                <p>Всяка година около тази дата виждам спорове — едни смятат, че е „черен ден", други казват, че е просто история. Как вие гледате на 9 септември — като трагедия, като неизбежност, или като нещо друго?</p>
+                            </div>
+                        </div>
+                        <div class="reply-form-mini" style="margin-top:1.5rem;">
+                            <label style="font-family:'Oswald',sans-serif;font-size:0.78rem;letter-spacing:0.1em;color:var(--text-light);display:block;margin-bottom:0.5rem;">ДОБАВИ КОМЕНТАР</label>
+                            <textarea placeholder="Напишете отговора си..."></textarea>
+                            <button class="btn btn-primary btn-sm reply-submit-btn" style="margin-top:0.5rem;">Публикувай</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="forum-category">
+                    <div class="forum-category-header">
+                        <span style="font-size:1.4rem;">🏛️</span>
+                        <h4>Политика и власт</h4>
+                        <span style="margin-left:auto;font-family:'Oswald',sans-serif;font-size:0.78rem;color:var(--text-light);letter-spacing:0.06em;">8 теми · 64 отговора</span>
+                    </div>
+
+                    <div class="forum-thread-row">
+                        <div>
+                            <div class="forum-thread-title">Живков — можеше ли да се случи реформа преди 89-та?</div>
+                            <div class="forum-thread-meta">
+                                <span>от <strong>prof_dimitrov</strong></span>
+                                <span>последен отговор: 12 ноем. 2024</span>
+                                <span class="user-badge">🎓 Историк</span>
+                            </div>
+                        </div>
+                        <div class="forum-stats"><span class="count">27</span>отговора</div>
+                    </div>
+                    <div class="forum-reply-thread">
+                        <div class="comments-wrap">
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="comment-avatar">ПД</div>
+                                    <span class="comment-author">prof_dimitrov</span>
+                                    <span class="user-badge">🎓 Историк</span>
+                                    <span class="comment-date">9 ноем. 2024</span>
+                                </div>
+                                <p>Въпросът е: имаше ли в БКП хора, способни и готови да проведат нещо като Горбачовата гласност? Или структурата на властта правеше реформата невъзможна без срив на самата система?</p>
+                            </div>
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="comment-avatar">АН</div>
+                                    <span class="comment-author">alex_neykov</span>
+                                    <span class="comment-date">11 ноем. 2024</span>
+                                </div>
+                                <p>Мисля, че ключовото е, че Живков никога не допускаше истинска алтернатива край себе си. Всеки, показвал самостоятелно мислене, бивал маргинализиран. Така системата се самоосъжда на неподвижност.</p>
+                            </div>
+                        </div>
+                        <div class="reply-form-mini" style="margin-top:1.5rem;">
+                            <label style="font-family:'Oswald',sans-serif;font-size:0.78rem;letter-spacing:0.1em;color:var(--text-light);display:block;margin-bottom:0.5rem;">ДОБАВИ КОМЕНТАР</label>
+                            <textarea placeholder="Напишете отговора си..."></textarea>
+                            <button class="btn btn-primary btn-sm reply-submit-btn" style="margin-top:0.5rem;">Публикувай</button>
+                        </div>
+                    </div>
+
+                    <div class="forum-thread-row">
+                        <div>
+                            <div class="forum-thread-title">Делото „Марков" — кой е наредил убийството?</div>
+                            <div class="forum-thread-meta"><span>от <strong>ds_archive</strong></span><span>последен отговор: 9 ноем. 2024</span></div>
+                        </div>
+                        <div class="forum-stats"><span class="count">19</span>отговора</div>
+                    </div>
+                    <div class="forum-reply-thread">
+                        <div class="comments-wrap">
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="comment-avatar">ДА</div>
+                                    <span class="comment-author">ds_archive</span>
+                                    <span class="comment-date">6 ноем. 2024</span>
+                                </div>
+                                <p>Убийството на Георги Марков с отровна рицинова сачма (Лондон, 1978) остава официално неразкрито. Архивите на ДС са частично унищожени. Какво знаем и какво все още е тайна?</p>
+                            </div>
+                        </div>
+                        <div class="reply-form-mini" style="margin-top:1.5rem;">
+                            <label style="font-family:'Oswald',sans-serif;font-size:0.78rem;letter-spacing:0.1em;color:var(--text-light);display:block;margin-bottom:0.5rem;">ДОБАВИ КОМЕНТАР</label>
+                            <textarea placeholder="Напишете отговора си..."></textarea>
+                            <button class="btn btn-primary btn-sm reply-submit-btn" style="margin-top:0.5rem;">Публикувай</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="forum-category">
+                    <div class="forum-category-header">
+                        <span style="font-size:1.4rem;">🏘️</span>
+                        <h4>Личен спомен и семейна история</h4>
+                        <span style="margin-left:auto;font-family:'Oswald',sans-serif;font-size:0.78rem;color:var(--text-light);letter-spacing:0.06em;">15 теми · 112 отговора</span>
+                    </div>
+
+                    <div class="forum-thread-row">
+                        <div>
+                            <div class="forum-thread-title">Семейни истории от времето на НРБ — споделете!</div>
+                            <div class="forum-thread-meta"><span>от <strong>moderator</strong></span><span>постоянна тема</span><span class="user-badge">📌 Закачена</span></div>
+                        </div>
+                        <div class="forum-stats"><span class="count">56</span>отговора</div>
+                    </div>
+                    <div class="forum-reply-thread">
+                        <div class="comments-wrap">
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="comment-avatar">RB</div>
+                                    <span class="comment-author">rosa_boneva</span>
+                                    <span class="comment-date">1 ноем. 2024</span>
+                                </div>
+                                <p>Баща ми работеше в Кремиковски комбинат от 1965 до 1990. Разказваше, че нормата е нараствала всяка година, заплатата — не. Но колективът е бил като второ семейство. Странно чувство на принадлежност при принуда.</p>
+                            </div>
+                        </div>
+                        <div class="reply-form-mini" style="margin-top:1.5rem;">
+                            <label style="font-family:'Oswald',sans-serif;font-size:0.78rem;letter-spacing:0.1em;color:var(--text-light);display:block;margin-bottom:0.5rem;">ДОБАВИ КОМЕНТАР</label>
+                            <textarea placeholder="Споделете спомена си..."></textarea>
+                            <button class="btn btn-primary btn-sm reply-submit-btn" style="margin-top:0.5rem;">Публикувай</button>
+                        </div>
+                    </div>
+
+                    <div class="forum-thread-row">
+                        <div>
+                            <div class="forum-thread-title">Възродителният процес — свидетелства от очевидци</div>
+                            <div class="forum-thread-meta"><span>от <strong>ahmet_m</strong></span><span>последен отговор: 13 ноем. 2024</span></div>
+                        </div>
+                        <div class="forum-stats"><span class="count">41</span>отговора</div>
+                    </div>
+                    <div class="forum-reply-thread">
+                        <div class="comments-wrap">
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="comment-avatar">АМ</div>
+                                    <span class="comment-author">ahmet_m</span>
+                                    <span class="comment-date">10 ноем. 2024</span>
+                                </div>
+                                <p>Семейството ми беше сред принудително преименуваните. Дядо ми отказа и прекара месец под арест. Майка ми, тогава на 12 години, разказва как учителите в класа са четели нови имена от списък. Децата не са разбирали защо не могат да се казват така, както са ги кръстили родителите им.</p>
+                            </div>
+                        </div>
+                        <div class="reply-form-mini" style="margin-top:1.5rem;">
+                            <label style="font-family:'Oswald',sans-serif;font-size:0.78rem;letter-spacing:0.1em;color:var(--text-light);display:block;margin-bottom:0.5rem;">ДОБАВИ КОМЕНТАР</label>
+                            <textarea placeholder="Напишете отговора си..."></textarea>
+                            <button class="btn btn-primary btn-sm reply-submit-btn" style="margin-top:0.5rem;">Публикувай</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /forum-section -->
+
+            <!-- Sources -->
+            <div class="sources-box" style="margin-top:2rem;">
+                <h3>📚 Препоръчана литература за форума</h3>
+                <ol>
+                    <li>Радева, М. (ред.) (2010). <em>Живи свидетелства. Спомени за времето на НРБ</em>. Фондация „Институт Отворено общество".</li>
+                    <li>Христов, Х. (2007). <em>Досиетата — кой е кой в Държавна сигурност</em>. „Сиела", София.</li>
+                    <li>Марков, Г. (1990). <em>Задочни репортажи за България</em>. Фондация „Георги Марков", София.</li>
+                </ol>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section section-muted" id="contact">
+    <div class="container">
+        <div class="section-header">
+            <h2>Свържете се с нас</h2>
+            <div class="underline"></div>
+            <p>Имате въпрос, предложение или искате да споделите материал? Пишете ни!</p>
+        </div>
+
+        <div class="contact-layout">
+            <div class="contact-card">
+                <h3 style="margin-bottom:1.5rem;font-size:1.3rem;">Изпратете съобщение</h3>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Вашето име</label>
+                            <input type="text" placeholder="Иван Иванов" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Имейл адрес</label>
+                            <input type="email" placeholder="ivan@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Тема</label>
+                        <select>
+                            <option value="">— Изберете тема —</option>
+                            <option>Въпрос за историческо събитие</option>
+                            <option>Предложение за статия</option>
+                            <option>Споделяне на семеен спомен</option>
+                            <option>Сигнализиране за грешка</option>
+                            <option>Сътрудничество</option>
+                            <option>Друго</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Съобщение</label>
+                        <textarea placeholder="Напишете вашето съобщение тук..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-btn" style="width:100%;">Изпрати съобщение</button>
+                    <div id="successMsg" class="success-message">✅ Благодарим! Вашето съобщение беше изпратено успешно. Ще отговорим в рамките на 48 часа.</div>
+                </form>
+            </div>
+
+            <div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:2rem;box-shadow:var(--shadow-sm);margin-bottom:1.5rem;">
+                    <h3 style="margin-bottom:1.5rem;font-size:1.2rem;">Контактна информация</h3>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Имейл</h4>
+                            <p><a href="mailto:info@bulgaria1944-1989.bg">info@bulgaria1944-1989.bg</a></p>
+                            <p><a href="mailto:editor@bulgaria1944-1989.bg">editor@bulgaria1944-1989.bg</a> (редакция)</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>Телефон</h4>
+                            <p><a href="tel:+35929876543">+359 2 987 65 43</a></p>
+                            <p style="font-size:0.82rem;color:var(--text-light);">Пон–Пет, 9:00–17:00 ч.</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Адрес</h4>
+                            <p>бул. „Витоша" 1, ет. 3<br>1000 София, България</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">🕐</div>
+                        <div>
+                            <h4>Работно време</h4>
+                            <p>Понеделник – Петък: 9:00 – 17:00 ч.<br>Събота – Неделя: затворено</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));border-radius:8px;padding:1.8rem;color:white;">
+                    <h3 style="color:var(--accent);font-size:1.1rem;margin-bottom:0.8rem;">Сътрудничество</h3>
+                    <p style="color:rgba(255,255,255,0.78);font-size:0.92rem;margin-bottom:1rem;">Сайтът приема приноси от историци, изследователи и очевидци. Ако разполагате с архивни материали, снимки или лични свидетелства, свържете се с нас.</p>
+                    <p style="color:rgba(255,255,255,0.78);font-size:0.92rem;">Всички публикувани материали се проверяват за историческа достоверност от нашия редакционен екип.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <a href="index.html" class="nav-logo" style="padding:0;margin-bottom:1rem;display:inline-flex;">
+                <svg class="logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="60" height="60" rx="8" fill="#1a2540"/>
+                    <polygon points="30,5 33.5,18 47,18 36,27 39.5,40 30,31.5 20.5,40 24,27 13,18 26.5,18" fill="#c9a84c"/>
+                    <text x="30" y="55" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="bold" fill="white" letter-spacing="2">НРБ</text>
+                </svg>
+                <div class="logo-text">България<span>1944 – 1989</span></div>
+            </a>
+            <p>Образователен уебсайт, посветен на историята на Народна Република България. Всички материали имат академичен и историко-образователен характер.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Навигация</h4>
+            <ul>
+                <li><a href="index.html">Начало</a></li>
+                <li><a href="history.html">Хронология</a></li>
+                <li><a href="politics.html">Политика</a></li>
+                <li><a href="culture.html">Икономика и Култура</a></li>
+                <li><a href="blog-forum.html">Блог и Форум</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Блог и Форум</h4>
+            <ul>
+                <li><a href="#" onclick="showTab('blog')">Блог статии</a></li>
+                <li><a href="#" onclick="showTab('forum')">Форум дискусии</a></li>
+                <li><a href="#contact">Обратна връзка</a></li>
+                <li><a href="#contact">Изпрати материал</a></li>
+            </ul>
+        </div>
+        <div class="footer-col footer-contact">
+            <h4>Контакти</h4>
+            <p>📧 <a href="mailto:info@bulgaria1944-1989.bg">info@bulgaria1944-1989.bg</a></p>
+            <p>📞 <a href="tel:+35929876543">+359 2 987 65 43</a></p>
+            <p>📍 София 1000, бул. „Витоша" 1</p>
+            <p>🕐 Пон–Пет: 9:00–17:00 ч.</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2024 България 1944–1989 | Образователен проект</span>
+        <span>Всички права запазени · Материалите са под Creative Commons</span>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+function showTab(tab) {
+    document.getElementById('content-blog').style.display = tab === 'blog' ? 'block' : 'none';
+    document.getElementById('content-forum').style.display = tab === 'forum' ? 'block' : 'none';
+    document.getElementById('tab-blog').style.borderBottomColor = tab === 'blog' ? 'var(--accent)' : 'transparent';
+    document.getElementById('tab-blog').style.color = tab === 'blog' ? 'var(--secondary)' : 'var(--text-light)';
+    document.getElementById('tab-forum').style.borderBottomColor = tab === 'forum' ? 'var(--accent)' : 'transparent';
+    document.getElementById('tab-forum').style.color = tab === 'forum' ? 'var(--secondary)' : 'var(--text-light)';
+}
+function toggleReadMore(btn) {
+    const article = btn.closest('article');
+    const more = article.querySelector('.post-excerpt-more');
+    const isOpen = more.style.display === 'block';
+    more.style.display = isOpen ? 'none' : 'block';
+    btn.textContent = isOpen ? 'Прочети повече' : 'Скрий';
+}
+document.getElementById('new-topic-form').style.display = 'none';
+document.querySelector('[onclick*="new-topic-form"]').addEventListener('click', function() {
+    const f = document.getElementById('new-topic-form');
+    f.style.display = f.style.display === 'none' ? 'block' : 'none';
+});
+</script>
+</body>
+</html>

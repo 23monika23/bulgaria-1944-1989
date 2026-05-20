@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Политическата система на Народна Република България — БКП, политически лидери, Държавна сигурност и репресии 1944–1989 г.">
+    <title>Политика и общество | България 1944–1989</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .ds-card {
+            background: linear-gradient(135deg, #1a0a0a, #3a1010);
+            border-radius: 8px;
+            padding: 2rem;
+            color: rgba(255,255,255,0.88);
+            border-left: 4px solid #c9a84c;
+            margin-bottom: 1.5rem;
+        }
+        .ds-card h3 { color: #c9a84c; margin-bottom: 0.8rem; }
+        .ds-card p { color: rgba(255,255,255,0.75); font-size: 0.95rem; }
+        .repression-list {
+            list-style: none;
+            padding: 0;
+        }
+        .repression-list li {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .repression-list li:last-child { border-bottom: none; }
+        .rep-year {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 55px;
+        }
+        .party-structure {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .party-box {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            border-top: 3px solid var(--accent);
+        }
+        .party-box .icon { font-size: 2rem; margin-bottom: 0.8rem; }
+        .party-box h4 { font-size: 1rem; margin-bottom: 0.4rem; }
+        .party-box p { font-size: 0.85rem; color: var(--text-light); margin: 0; }
+        .camps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .camp-card {
+            background: #2a1010;
+            border-radius: 8px;
+            padding: 1.5rem;
+            color: rgba(255,255,255,0.8);
+        }
+        .camp-card h4 { color: #e8c87a; margin-bottom: 0.5rem; font-size: 1rem; }
+        .camp-card p { font-size: 0.88rem; margin: 0; }
+    </style>
+</head>
+<body>
+
+<div class="announcement-bar">
+    🎓 <strong>Образователен ресурс</strong> — България в епохата на социализма &nbsp;|&nbsp; 1944–1989 г.
+</div>
+
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <svg class="logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="60" rx="8" fill="#1a2540"/>
+                <rect x="5" y="5" width="50" height="50" rx="6" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.5"/>
+                <polygon points="30,5 33.5,18 47,18 36,27 39.5,40 30,31.5 20.5,40 24,27 13,18 26.5,18" fill="#c9a84c"/>
+                <text x="30" y="55" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="bold" fill="white" letter-spacing="2">НРБ</text>
+            </svg>
+            <div class="logo-text">България<span>1944 – 1989</span></div>
+        </a>
+        <button class="nav-toggle" aria-label="Меню"><span></span><span></span><span></span></button>
+        <ul class="nav-links">
+            <li><a href="index.html">Начало</a></li>
+            <li><a href="history.html">Хронология</a></li>
+            <li><a href="politics.html" class="active">Политика</a></li>
+            <li><a href="culture.html">Икономика и Култура</a></li>
+            <li><a href="blog-forum.html">Блог и Форум</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-header">
+    <div class="page-header-content">
+        <p class="breadcrumb"><a href="index.html">Начало</a> <span>›</span> Политика и общество</p>
+        <h1>Политика и общество</h1>
+        <p style="color:rgba(255,255,255,0.65);font-family:'Playfair Display',serif;font-style:italic;margin-top:0.5rem;">Властта, партията, репресиите и животът на гражданите</p>
+    </div>
+</div>
+
+<!-- INTRO -->
+<section class="section-sm">
+    <div class="container">
+        <div class="intro-highlight">
+            <p>Политическата система на Народна Република България е изградена по съветски образец — с монополна управляваща партия, единство на партийна и държавна власт, и тотален контрол над обществения живот. Разберете как функционира тази система, кои са нейните главни актьори и каква е цената, платена от обикновените хора.</p>
+        </div>
+    </div>
+</section>
+
+<!-- BKP SECTION -->
+<section class="section" id="bkp">
+    <div class="container">
+        <div class="split-section">
+            <div>
+                <span class="period-badge">Основана 1919 г.</span>
+                <h2>Българската комунистическа партия</h2>
+                <div class="underline-left"></div>
+                <p class="lead">БКП е единствената управляваща и ръководна политическа сила в НРБ — факт, изрично закрепен в конституцията от 1971 г.</p>
+                <p>Основана през 1919 г. (като Тесни социалисти), партията е забранена в периода 1924–1944 г. и действа нелегално. След 9 септември 1944 г. тя бързо монополизира властта чрез Отечествения фронт.</p>
+                <p>В своя разцвет БКП наброява над <strong>900 000 члена</strong> — около 10% от цялото население на страната. Членството е де факто задължително условие за кариерно развитие в повечето сектори на обществения живот. Партийните структури проникват в завода, училището, армията и медиите.</p>
+                <p>Ключов орган е <strong>Централният комитет (ЦК)</strong>, а оперативното управление — в ръцете на <strong>Политбюро</strong>. Генералният секретар на ЦК е безспорният лидер на страната.</p>
+            </div>
+            <div>
+                <img src="https://picsum.photos/seed/bkp-party/600/500" alt="БКП заседание" class="split-img">
+            </div>
+        </div>
+
+        <h3 style="text-align:center;margin-bottom:2rem;">Структура на партийната власт</h3>
+        <div class="party-structure">
+            <div class="party-box">
+                <div class="icon">⭐</div>
+                <h4>Генерален секретар</h4>
+                <p>Върховен лидер. Пряко контролира армията, ДС и дипломацията.</p>
+            </div>
+            <div class="party-box">
+                <div class="icon">🏛️</div>
+                <h4>Политбюро</h4>
+                <p>Около 10–15 члена. Вземат всички ключови политически и икономически решения.</p>
+            </div>
+            <div class="party-box">
+                <div class="icon">📋</div>
+                <h4>Централен комитет</h4>
+                <p>Около 100–150 члена. Формално избира Политбюро на конгресите.</p>
+            </div>
+            <div class="party-box">
+                <div class="icon">🏘️</div>
+                <h4>Партийни организации</h4>
+                <p>Клетки в заводи, институции, училища и армейски части из цялата страна.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS DARK -->
+<section class="stats-section">
+    <div class="container">
+        <div class="grid-4">
+            <div class="stat-item">
+                <span class="stat-number" data-target="900000" data-suffix="">0</span>
+                <span class="stat-label">Члена на БКП в края на 80-те</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="2138" data-suffix="">0</span>
+                <span class="stat-label">Екзекутирани от Народния съд (1945)</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="35" data-suffix=" год.">0</span>
+                <span class="stat-label">Управление на Тодор Живков</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="360000" data-suffix="">0</span>
+                <span class="stat-label">Изселени по Възродителния процес</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LEADERS -->
+<section class="section" id="leaders">
+    <div class="container">
+        <div class="section-header">
+            <h2>Политическите лидери на НРБ</h2>
+            <div class="underline"></div>
+            <p>Четиримата ключови държавници, ръководили България в периода 1944–1989 г.</p>
+        </div>
+        <div class="grid-4">
+            <div class="person-card">
+                <div class="person-img-wrap">
+                    <img class="person-img"
+                         src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Georgi_Dimitrov_1045.jpg"
+                         onerror="this.src='https://picsum.photos/seed/dim1/400/350'"
+                         alt="Георги Димитров">
+                </div>
+                <div class="person-info">
+                    <div class="person-name">Георги Димитров</div>
+                    <div class="person-role">Министър-председател</div>
+                    <div class="person-years">1946 – 1949</div>
+                </div>
+            </div>
+            <div class="person-card">
+                <div class="person-img-wrap">
+                    <img class="person-img"
+                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Valko_Chervenkov.jpg/440px-Valko_Chervenkov.jpg"
+                         onerror="this.src='https://picsum.photos/seed/chervenko/400/350'"
+                         alt="Вълко Червенков">
+                </div>
+                <div class="person-info">
+                    <div class="person-name">Вълко Червенков</div>
+                    <div class="person-role">Министър-председател</div>
+                    <div class="person-years">1950 – 1956</div>
+                </div>
+            </div>
+            <div class="person-card">
+                <div class="person-img-wrap">
+                    <img class="person-img"
+                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Todor_Zhivkov_1974.jpg/440px-Todor_Zhivkov_1974.jpg"
+                         onerror="this.src='https://picsum.photos/seed/zhivkov1/400/350'"
+                         alt="Тодор Живков">
+                </div>
+                <div class="person-info">
+                    <div class="person-name">Тодор Живков</div>
+                    <div class="person-role">Ген. секретар / Председател</div>
+                    <div class="person-years">1954 – 1989</div>
+                </div>
+            </div>
+            <div class="person-card">
+                <div class="person-img-wrap">
+                    <img class="person-img"
+                         src="https://picsum.photos/seed/mladenov1/400/350"
+                         alt="Петър Младенов">
+                </div>
+                <div class="person-info">
+                    <div class="person-name">Петър Младенов</div>
+                    <div class="person-role">Генерален секретар</div>
+                    <div class="person-years">1989 – 1990</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed bios -->
+        <div style="margin-top:3rem;">
+            <div class="split-section">
+                <div>
+                    <span class="period-badge">1882 – 1949</span>
+                    <h2>Георги Димитров — Бащата на режима</h2>
+                    <div class="underline-left"></div>
+                    <p class="lead">Легендарната фигура на международното комунистическо движение, поставила основите на комунистическата власт в България.</p>
+                    <p>Роден в Ковачевци, Перник, Димитров е синдикален активист от 16-годишна възраст. Участва в Септемврийското въстание (1923). Нелегален деец в Коминтерна. През 1933 г. е арестуван в Германия и обвинен в запалването на Райхстага. Блестящата му самозащита на Лайпцигския процес го превръща в световна знаменитост — и той е оправдан.</p>
+                    <p>След 1934 г. е в СССР, където ръководи Коминтерна. Завръща се в България едва през ноември 1945 г. Министър-председател от 1946 г. Приема Конституцията от 1947 г. Умира при неизяснени обстоятелства на 2 юли 1949 г. в санаториум край Москва. Тялото му е балсамирано и изложено в мавзолей, разрушен едва през 1999 г.</p>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Georgi_Dimitrov_1045.jpg"
+                         onerror="this.src='https://picsum.photos/seed/dimitrov-bio/600/450'"
+                         alt="Георги Димитров" class="split-img">
+                </div>
+            </div>
+
+            <div class="split-section reverse">
+                <div>
+                    <span class="period-badge">1911 – 1998</span>
+                    <h2>Тодор Живков — Дългото управление</h2>
+                    <div class="underline-left"></div>
+                    <p class="lead">Най-дълго управлявалият комунистически лидер в Европа — 35 години начело на партията и държавата.</p>
+                    <p>Роден в Правец, Живков се издига в партийните редици като партизанин и партиен функционер в София. Избран за първи секретар на БКП в март 1954 г. Неговото управление се характеризира с относителна прагматичност и ориентация към потребителски социализъм — в сравнение с другите страни от Варшавския пакт.</p>
+                    <p>Той лично ръководи Възродителния процес (1984–89) — принудителното преименуване на турското малцинство. На 10 ноември 1989 г. е свален от собствените му съратници. Умира под домашен арест на 5 август 1998 г. в София.</p>
+                </div>
+                <div>
+                    <img src="https://picsum.photos/seed/zhivkov-bio/600/450"
+                         alt="Тодор Живков" class="split-img">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DS -->
+<section class="section section-muted">
+    <div class="container">
+        <div class="section-header">
+            <h2>Държавна сигурност — ДС</h2>
+            <div class="underline"></div>
+            <p>Тайната полиция на НРБ — инструментът на политическия контрол и репресиите.</p>
+        </div>
+        <div class="grid-2">
+            <div>
+                <p>Комитетът за Държавна сигурност (КДС, популярно — „Държавна сигурност" или „ДС") е тайната полиция на НРБ, създадена по модел на съветския КГБ. Нейните задачи включват контраразузнаване, политически надзор, цензура и неутрализиране на инакомислещите.</p>
+                <p>В апогея си ДС разполага с <strong>над 100 000 щатни служители и сътрудници</strong> — един от най-гъстите мрежи за наблюдение в Источния блок спрямо населението. Практически всяко предприятие, учреждение, университет и квартал е имало свои информатори.</p>
+                <p>Особено прочут е т.нар. <strong>„параграф чадър"</strong> (Лондон, 1978 г.) — убийството на писателя емигрант Георги Марков с отровна рицинова сачма, изстреляна от чадър. Операцията е извършена от ДС в сътрудничество с КГБ и остава недоказана официално до днес.</p>
+            </div>
+            <div>
+                <div class="ds-card">
+                    <h3>🔒 Структура на ДС</h3>
+                    <ul style="list-style:none;padding:0;">
+                        <li style="padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.1);">▶ І Главно управление — разузнаване в чужбина</li>
+                        <li style="padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.1);">▶ ІІ Главно управление — контраразузнаване</li>
+                        <li style="padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.1);">▶ VІ Управление — идеологически контрол</li>
+                        <li style="padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.1);">▶ Военно контраразузнаване</li>
+                        <li style="padding:0.4rem 0;">▶ Техническо оперативно управление (подслушване)</li>
+                    </ul>
+                </div>
+                <div class="ds-card" style="margin-top:1rem;">
+                    <h3>⚠️ Известни операции</h3>
+                    <p>• Убийството на Георги Марков (Лондон, 1978)<br>
+                    • „Делото" на Кольо Леков<br>
+                    • Арест на 27 монаси — Черепишки манастир (1952)<br>
+                    • Операция „Топлина" — следене на западни дипломати<br>
+                    • Операция „Буря" — Възродителният процес</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REPRESSIONS -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Политически репресии и трудови лагери</h2>
+            <div class="underline"></div>
+            <p>Инструментите на принудата, използвани за укрепване на режима.</p>
+        </div>
+
+        <div class="grid-2" style="margin-bottom:3rem;">
+            <div>
+                <img src="https://picsum.photos/seed/belene-camp/600/400" alt="Белене — трудов лагер" style="width:100%;height:320px;object-fit:cover;border-radius:8px;box-shadow:var(--shadow);filter:sepia(0.5) contrast(1.1);">
+                <p style="font-size:0.8rem;color:var(--text-light);margin-top:0.5rem;font-style:italic;">Островът „Белене" в река Дунав — символ на политическите лагери в НРБ</p>
+            </div>
+            <div>
+                <p>Комунистическата власт систематично използва политически съдебни процеси, изпращане в трудови лагери и физически терор, за да заглуши всяка форма на съпротива или инакомислие.</p>
+                <h3 style="margin-top:1.5rem;">Трудови лагери</h3>
+                <div class="camps-grid" style="margin:1rem 0;">
+                    <div class="camp-card">
+                        <h4>⛓ Белене (1949–1953; 1956–1987)</h4>
+                        <p>Остров в Дунав. Най-известният лагер. Тук са интернирани предимно политически противници.</p>
+                    </div>
+                    <div class="camp-card">
+                        <h4>⛓ Куциян (1948–1949)</h4>
+                        <p>Мина в Перник. Каторжен труд при тежки условия.</p>
+                    </div>
+                    <div class="camp-card">
+                        <h4>⛓ Богданов дол (1949–1953)</h4>
+                        <p>Минен лагер в Старозагорско. Изключително тежки условия на труд.</p>
+                    </div>
+                    <div class="camp-card">
+                        <h4>⛓ Ловеч (1959–1962)</h4>
+                        <p>Трудово-поправителна група. Прочут с жестокото си управление.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Хронология на репресиите</h3>
+        <div style="background:var(--bg-card);border-radius:8px;box-shadow:var(--shadow-sm);overflow:hidden;margin-top:1rem;">
+            <ul class="repression-list">
+                <li>
+                    <span class="rep-year">1945</span>
+                    <div><strong>Народният съд</strong> — 2 618 обвиняеми, 2 138 смъртни присъди. Сред осъдените — трима принца, 22 министри, 68 народни представители и стотици офицери.</div>
+                </li>
+                <li>
+                    <span class="rep-year">1947</span>
+                    <div><strong>Процесът срещу Никола Петков</strong> — лидерът на опозиционния БЗНС е осъден и обесен. Международни протести не са взети предвид.</div>
+                </li>
+                <li>
+                    <span class="rep-year">1949</span>
+                    <div><strong>Процесът срещу Трайчо Костов</strong> — вторият по значение партиен деец е обвинен в „титоизъм" и шпионаж, осъден и екзекутиран.</div>
+                </li>
+                <li>
+                    <span class="rep-year">1952</span>
+                    <div><strong>Арест на свещеници и монаси</strong> — католически свещеници са осъдени на смърт или затвор. Православни монаси са интернирани. Религиозният живот е жестоко ограничен.</div>
+                </li>
+                <li>
+                    <span class="rep-year">1965</span>
+                    <div><strong>Заговорът на Иван Тодоров-Горуня</strong> — офицери, замислили военен преврат, са арестувани и осъдени. Повод за Живков да укрепи контрола над армията.</div>
+                </li>
+                <li>
+                    <span class="rep-year">1984–89</span>
+                    <div><strong>Възродителният процес</strong> — масова асимилационна кампания, принудително преименуване на 850 000 мюсюлмани. Тези, които се противят — арестувани, депортирани в провинцията или убити.</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sources-box" style="margin-top:3rem;">
+            <h3>📚 Използвани източници</h3>
+            <ol>
+                <li>Методиев, М., Стоянов, Л. (2007). <em>Държавна сигурност — структура, дейност, архиви</em>. Комисия по досиетата, София.</li>
+                <li>Баева, И. (2001). <em>Политически процеси в България (1944–1989)</em>. ИК „Ариадна".</li>
+                <li>Христов, Х. (2008). <em>Убийте Георги Марков</em>. „Сиела", София.</li>
+                <li>Комисия за разкриване на документи и обявяване на принадлежност на български граждани към ДС и разузнавателните служби на БНА — <a href="https://www.comdos.bg" style="color:var(--accent);">comdos.bg</a></li>
+                <li>Огнянов, Л. (1993). <em>Държавно-политическата система на България 1944–1948</em>. УИ „Климент Охридски".</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <a href="index.html" class="nav-logo" style="padding:0;margin-bottom:1rem;display:inline-flex;">
+                <svg class="logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="60" height="60" rx="8" fill="#1a2540"/>
+                    <polygon points="30,5 33.5,18 47,18 36,27 39.5,40 30,31.5 20.5,40 24,27 13,18 26.5,18" fill="#c9a84c"/>
+                    <text x="30" y="55" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="bold" fill="white" letter-spacing="2">НРБ</text>
+                </svg>
+                <div class="logo-text">България<span>1944 – 1989</span></div>
+            </a>
+            <p>Образователен уебсайт, посветен на историята на Народна Република България. Всички материали имат академичен и историко-образователен характер.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Навигация</h4>
+            <ul>
+                <li><a href="index.html">Начало</a></li>
+                <li><a href="history.html">Хронология</a></li>
+                <li><a href="politics.html">Политика</a></li>
+                <li><a href="culture.html">Икономика и Култура</a></li>
+                <li><a href="blog-forum.html">Блог и Форум</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Теми</h4>
+            <ul>
+                <li><a href="#bkp">Комунистическата партия</a></li>
+                <li><a href="#leaders">Политически лидери</a></li>
+                <li><a href="#ds">Държавна сигурност</a></li>
+                <li><a href="#repressions">Репресии и лагери</a></li>
+            </ul>
+        </div>
+        <div class="footer-col footer-contact">
+            <h4>Контакти</h4>
+            <p>📧 <a href="mailto:info@bulgaria1944-1989.bg">info@bulgaria1944-1989.bg</a></p>
+            <p>📞 <a href="tel:+35929876543">+359 2 987 65 43</a></p>
+            <p>📍 София 1000, бул. „Витоша" 1</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2024 България 1944–1989 | Образователен проект</span>
+        <span>Всички права запазени · Материалите са под Creative Commons</span>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

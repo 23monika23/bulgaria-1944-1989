@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Икономиката, индустриализацията, земеделието, изкуството, спортът и образованието в Народна Република България 1944–1989 г.">
+    <title>Икономика и Култура | България 1944–1989</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .fiveyr-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--accent);
+            position: relative;
+        }
+        .fiveyr-num {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: rgba(201,168,76,0.15);
+            line-height: 1;
+        }
+        .fiveyr-card h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+        .fiveyr-card p { font-size: 0.85rem; color: var(--text-light); margin: 0; }
+        .medal-row {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .medal {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 0.3rem 0.8rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.78rem;
+            color: var(--text-light);
+        }
+        .medal.gold { border-color: #f0c040; color: #7a6000; background: #fff8e0; }
+        .medal.silver { border-color: #b0b8c4; color: #444; background: #f5f5f5; }
+        .medal.bronze { border-color: #c87840; color: #5a2800; background: #fff0e5; }
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+        .art-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .art-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            filter: sepia(0.35);
+            transition: filter 0.3s;
+        }
+        .art-card:hover img { filter: sepia(0); }
+        .art-card-body { padding: 1.2rem; }
+        .art-card-type {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+        .art-card h4 { font-size: 1rem; margin-bottom: 0.3rem; }
+        .art-card p { font-size: 0.85rem; color: var(--text-light); margin: 0; }
+        .progress-bar {
+            background: var(--border);
+            border-radius: 4px;
+            height: 8px;
+            margin: 0.5rem 0 1rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1.5s ease;
+        }
+        .industry-stat {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.88rem;
+            margin-bottom: 0.3rem;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.04em;
+        }
+        .industry-stat .val { color: var(--accent); font-weight: 600; }
+    </style>
+</head>
+<body>
+
+<div class="announcement-bar">
+    🎓 <strong>Образователен ресурс</strong> — България в епохата на социализма &nbsp;|&nbsp; 1944–1989 г.
+</div>
+
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <svg class="logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="60" rx="8" fill="#1a2540"/>
+                <rect x="5" y="5" width="50" height="50" rx="6" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.5"/>
+                <polygon points="30,5 33.5,18 47,18 36,27 39.5,40 30,31.5 20.5,40 24,27 13,18 26.5,18" fill="#c9a84c"/>
+                <text x="30" y="55" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="bold" fill="white" letter-spacing="2">НРБ</text>
+            </svg>
+            <div class="logo-text">България<span>1944 – 1989</span></div>
+        </a>
+        <button class="nav-toggle" aria-label="Меню"><span></span><span></span><span></span></button>
+        <ul class="nav-links">
+            <li><a href="index.html">Начало</a></li>
+            <li><a href="history.html">Хронология</a></li>
+            <li><a href="politics.html">Политика</a></li>
+            <li><a href="culture.html" class="active">Икономика и Култура</a></li>
+            <li><a href="blog-forum.html">Блог и Форум</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-header">
+    <div class="page-header-content">
+        <p class="breadcrumb"><a href="index.html">Начало</a> <span>›</span> Икономика и Култура</p>
+        <h1>Икономика и Култура</h1>
+        <p style="color:rgba(255,255,255,0.65);font-family:'Playfair Display',serif;font-style:italic;margin-top:0.5rem;">Индустриализация, колективизация, изкуство и спортни триумфи</p>
+    </div>
+</div>
+
+<!-- ECONOMY INTRO -->
+<section class="section" id="economy">
+    <div class="container">
+        <div class="section-header">
+            <h2>Плановата икономика</h2>
+            <div class="underline"></div>
+            <p>От аграрна до индустриализирана страна — трансформацията на българската икономика за четири десетилетия.</p>
+        </div>
+
+        <div class="split-section">
+            <div>
+                <span class="period-badge">1949 – 1989 г.</span>
+                <h2>Петилетните планове</h2>
+                <div class="underline-left"></div>
+                <p class="lead">Централното планиране е краеъгълният камък на социалистическата икономика. Всеки петгодишен план определя производствените цели за цялата национална икономика.</p>
+                <p>По модела на съветските петилетки, България приема поредица от такива планове, започвайки от 1949 г. Целите неизменно акцентират върху тежката промишленост — металургия, машиностроене, химия, енергетика. Леката промишленост и потребителските стоки остават второстепенни приоритети.</p>
+                <p>Резултатите в началото са впечатляващи — за 15 години (1950–1965) промишленото производство нараства повече от <strong>10 пъти</strong>. Делът на промишлеността в БВП се увеличава от 23% (1944) на над 60% (1970). Селското стопанство, което до войната дава прехрана на 80% от работещите, губи тази роля.</p>
+            </div>
+            <div>
+                <div style="background:var(--bg-card);border-radius:8px;padding:2rem;box-shadow:var(--shadow-sm);">
+                    <h3 style="margin-bottom:1.5rem;">Дял на промишлеността в икономиката</h3>
+                    <div>
+                        <div class="industry-stat"><span>1944 г.</span><span class="val">23%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:23%"></div></div>
+                        <div class="industry-stat"><span>1955 г.</span><span class="val">38%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:38%"></div></div>
+                        <div class="industry-stat"><span>1965 г.</span><span class="val">52%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:52%"></div></div>
+                        <div class="industry-stat"><span>1975 г.</span><span class="val">61%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:61%"></div></div>
+                        <div class="industry-stat"><span>1985 г.</span><span class="val">58%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:58%"></div></div>
+                    </div>
+                    <p style="font-size:0.8rem;color:var(--text-light);margin-top:1rem;font-style:italic;">* Дял на промишлеността в брутния вътрешен продукт</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Five Year Plans Grid -->
+        <h3 style="margin-bottom:1.5rem;">Основни петилетни планове</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-bottom:3rem;">
+            <div class="fiveyr-card"><div class="fiveyr-num">І</div><h4>Първи план (1949–53)</h4><p>Национализация и начало на индустриализацията. Акцент — тежка промишленост и енергетика.</p></div>
+            <div class="fiveyr-card"><div class="fiveyr-num">ІІ</div><h4>Втори план (1953–57)</h4><p>Завършване на колективизацията. Изграждане на ХЕЦ „Баташки" и нови заводи.</p></div>
+            <div class="fiveyr-card"><div class="fiveyr-num">ІІІ</div><h4>Трети план (1958–62)</h4><p>Разширяване на химическата промишленост. Туризмът на Черноморието.</p></div>
+            <div class="fiveyr-card"><div class="fiveyr-num">ІV</div><h4>Четвърти план (1961–65)</h4><p>Кремиковски металургичен комбинат. Ядрена програма — АЕЦ „Козлодуй".</p></div>
+            <div class="fiveyr-card"><div class="fiveyr-num">V</div><h4>Пети план (1966–70)</h4><p>Електроника и точно машиностроене. Създаване на Изот и Правец компютри.</p></div>
+            <div class="fiveyr-card"><div class="fiveyr-num">…</div><h4>Планове VI–XII (до 1990)</h4><p>Нарастваща задлъжнялост. Микроелектроника (Правецки компютри). Криза на планирането.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- KEY INDUSTRIES -->
+<section class="section section-muted">
+    <div class="container">
+        <div class="section-header">
+            <h2>Ключови индустриални обекти</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <img class="card-img" src="https://picsum.photos/seed/kremukovtsi2/600/300" alt="Кремиковски металургичен комбинат" style="filter:sepia(0.4);">
+                <div class="card-body">
+                    <span class="card-tag">Металургия · 1963 г.</span>
+                    <h3>КМК „Кремиковци"</h3>
+                    <p>Изграден край София по съветски проект, комбинатът е символ на социалистическата индустриализация. В разцвета си произвежда над 2 милиона тона стомана годишно и дава работа на над 25 000 работници.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://picsum.photos/seed/kozloduy/600/300" alt="АЕЦ Козлодуй" style="filter:sepia(0.4);">
+                <div class="card-body">
+                    <span class="card-tag">Енергетика · 1974 г.</span>
+                    <h3>АЕЦ „Козлодуй"</h3>
+                    <p>Атомната централа на България, изградена с пряката помощ на СССР. Първи реактор — 1974 г. В крайна сметка шест реактора осигуряват почти половината от електроенергията на страната.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://picsum.photos/seed/pravets-comp/600/300" alt="Правецки компютри" style="filter:sepia(0.35);">
+                <div class="card-body">
+                    <span class="card-tag">Електроника · 1980-те</span>
+                    <h3>Правецки компютри — ИЗОТ</h3>
+                    <p>България се превръща в основен доставчик на компютри и електронна техника за страните от Съвета за икономическа взаимопомощ (СИВ). ДЗУ произвежда твърди дискове, а ИЗОТ — персонални компютри, съвместими с IBM.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AGRICULTURE -->
+<section class="section">
+    <div class="container">
+        <div class="split-section reverse">
+            <div>
+                <span class="period-badge">1945 – 1958 г.</span>
+                <h2>Колективизация на земеделието</h2>
+                <div class="underline-left"></div>
+                <p class="lead">Принудителното обединяване на частните земи в кооперативни стопанства е едно от най-травматичните социални преустройства в историята на НРБ.</p>
+                <p>Трудово-кооперативните земеделски стопанства (ТКЗС) са въведени по образец на съветските колхози. Началото е поставено с „доброволни" записвания, но скоро принудата, заплахите и физическото насилие стават нормата.</p>
+                <p>Селяни, отказали да предадат земята си, са арестувани, изселени или изпратени в трудови лагери. До 1958 г. колективизацията е завършена — 92% от обработваемата земя е в ТКЗС.</p>
+                <p>Последствията са дългосрочни: масово изселване от селата към градовете, разпад на традиционния селски бит, спад в производителността на земеделието и зависимост от механизирано стопанство при хронична липса на техника.</p>
+            </div>
+            <div>
+                <img src="https://picsum.photos/seed/collectivization/600/450" alt="ТКЗС колективизация" class="split-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CULTURE SECTION -->
+<section class="section section-muted" id="culture-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Изкуство и Култура в НРБ</h2>
+            <div class="underline"></div>
+            <p>Социалистическият реализъм, кинематографията, литературата и феноменът Людмила Живкова.</p>
+        </div>
+
+        <div class="split-section">
+            <div>
+                <h2>Социалистическият реализъм</h2>
+                <div class="underline-left"></div>
+                <p class="lead">Официалната естетическа доктрина изисква изкуството да отразява „действителността в нейното революционно развитие" и да служи на партийните цели.</p>
+                <p>До средата на 50-те години художниците, писателите и кинорежисьорите са задължени да следват канона на социалистическия реализъм — героичен работник, колхозник или партизанин, изобразен в оптимистична светлина. Произведения, отклоняващи се от нормата, биват цензурирани или забранявани.</p>
+                <p>След Априлския пленум (1956) настъпва известно „размразяване". Появяват се по-смели произведения в литературата и киното, макар цензурата да не изчезва. Писатели като Йордан Радичков и Павел Вежинов постигат световно признание, балансирайки между официалната доктрина и художествената свобода.</p>
+            </div>
+            <div>
+                <img src="https://picsum.photos/seed/socialist-art/600/430" alt="Социалистическо изкуство" class="split-img">
+            </div>
+        </div>
+
+        <h3 style="margin-bottom:1.5rem;">Знакови произведения на епохата</h3>
+        <div class="art-grid">
+            <div class="art-card">
+                <img src="https://picsum.photos/seed/koziyrog/500/250" alt="Козият рог">
+                <div class="art-card-body">
+                    <div class="art-card-type">Кино · 1972 г.</div>
+                    <h4>„Козият рог"</h4>
+                    <p>Режисьор Метоти Андонов. Един от най-значимите български филми. Историческа трагедия за мъст и чест, получила признание на множество фестивали.</p>
+                </div>
+            </div>
+            <div class="art-card">
+                <img src="https://picsum.photos/seed/matriarchat/500/250" alt="Матриархат">
+                <div class="art-card-body">
+                    <div class="art-card-type">Кино · 1977 г.</div>
+                    <h4>„Матриархат"</h4>
+                    <p>Режисьор Людмил Кирков. Остра социална сатира, показваща противоречията между официалната идеология и реалността.</p>
+                </div>
+            </div>
+            <div class="art-card">
+                <img src="https://picsum.photos/seed/radickov/500/250" alt="Йордан Радичков">
+                <div class="art-card-body">
+                    <div class="art-card-type">Литература</div>
+                    <h4>Йордан Радичков</h4>
+                    <p>Един от най-оригиналните български писатели, чийто уникален стил съчетава фолклорното наследство с модернистична образност. Номиниран за Нобелова награда.</p>
+                </div>
+            </div>
+            <div class="art-card">
+                <img src="https://picsum.photos/seed/ndk-building/500/250" alt="НДК">
+                <div class="art-card-body">
+                    <div class="art-card-type">Архитектура · 1981 г.</div>
+                    <h4>Национален дворец на Културата</h4>
+                    <p>Изграден по инициатива на Людмила Живкова за 1300-годишнината на България. Най-голямата многофункционална сграда на Балканите, символ на позднния социализъм.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lyudmila Zhivkova -->
+        <div style="margin-top:3rem;">
+            <div class="split-section reverse">
+                <div>
+                    <span class="period-badge">1942 – 1981 г.</span>
+                    <h2>Людмила Живкова — Меценатката</h2>
+                    <div class="underline-left"></div>
+                    <p class="lead">Дъщерята на Тодор Живков, ръководила Комитета за изкуство и култура (1975–1981), е сред най-неочакваните фигури на НРБ.</p>
+                    <p>Завършила история в Москва, Людмила Живкова развива самостоятелна философия на националната идентичност и духовност — нетипична за комунистическия режим. Организира грандиозни международни изложби, включително голяма изложба на тракийско изкуство в Лондон (1976).</p>
+                    <p>При нейното ръководство България установява широки културни контакти с Индия, Япония и западноевропейски страни. Тя покровителства откритите таланти и оказва решаващо влияние върху честването на 1300-годишнината на България (1981). Умира мистериозно на 38 години на 21 юли 1981 г. — официалната причина е кръвоизлив в мозъка.</p>
+                </div>
+                <div>
+                    <img src="https://picsum.photos/seed/lyudmila/600/450" alt="Людмила Живкова — Култура в НРБ" class="split-img">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SPORTS -->
+<section class="section" id="sports">
+    <div class="container">
+        <div class="section-header">
+            <h2>Спортни постижения на НРБ</h2>
+            <div class="underline"></div>
+            <p>Социалистическата България постига изключителни резултати в международния спорт — особено в олимпийските дисциплини.</p>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <img src="https://picsum.photos/seed/sports-bulgaria/600/400" alt="Олимпийски постижения на България" style="width:100%;height:340px;object-fit:cover;border-radius:8px;box-shadow:var(--shadow);filter:sepia(0.3);">
+            </div>
+            <div>
+                <p>Спортът в НРБ е финансиран от държавата и е важна пропагандна арена за международно признание. Спортистите получават специална подготовка, отлично хранене и привилегии, несравними с тези на обикновените граждани.</p>
+                <p>България е сред водещите олимпийски нации в борбата, щангите и лека атлетика. При Олимпийските игри в Москва (1980) постига 8 златни, 16 сребърни и 17 бронзови медала — 6-то място в класацията.</p>
+                <h4 style="margin:1.5rem 0 0.8rem;">Олимпийски шампиони — избрани имена:</h4>
+                <div class="medal-row">
+                    <span class="medal gold">🥇 Юлия Рускова — гимнастика</span>
+                    <span class="medal gold">🥇 Дарин Джабаров — борба</span>
+                    <span class="medal gold">🥇 Иван Иванов — щанги</span>
+                    <span class="medal gold">🥇 Стоян Делчев — гимнастика</span>
+                    <span class="medal silver">🥈 Иванка Христова — хвърляне</span>
+                    <span class="medal gold">🥇 Йорданка Благоева — атлетика</span>
+                </div>
+                <h4 style="margin:1.5rem 0 0.8rem;">Световни шампиони по борба и щанги:</h4>
+                <p>Националният борбовен отбор е сред трайните доминатори в световните първенства. Само в периода 1960–1989 г. България завоюва над 80 световни титли в борбата и над 40 в щангите.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section section-muted">
+    <div class="container">
+        <div class="section-header">
+            <h2>Образование и наука</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="split-section">
+            <div>
+                <h2>Масово образование и ликвидиране на неграмотността</h2>
+                <div class="underline-left"></div>
+                <p class="lead">Образователната революция на НРБ е едно от малкото безспорни постижения на режима — страната постига почти пълна грамотност за две десетилетия.</p>
+                <p>През 1944 г. около 20–25% от населението е неграмотно. Новата власт провежда масови кампании заограмотяване, строи стотици нови училища и въвежда задължително 8-годишно образование (по-късно — 10-годишно).</p>
+                <p>Образованието е безплатно на всички нива — от детска градина до университет. Броят на студентите нараства от около 10 000 (1944) до над 100 000 (1980). Основани са нови висши учебни заведения в Пловдив, Варна и Русе.</p>
+                <p>Съдържанието на образованието е строго контролирано — учебниците по история, литература и обществознание отразяват официалната партийна идеология. Задължителното изучаване на руски език и марксистко-ленинската философия е неотменна черта на всички образователни нива.</p>
+            </div>
+            <div>
+                <img src="https://picsum.photos/seed/education-bg/600/430" alt="Образование в НРБ" class="split-img">
+            </div>
+        </div>
+
+        <div class="sources-box">
+            <h3>📚 Използвани източници</h3>
+            <ol>
+                <li>Калинова, Е., Баева, И. (2006). <em>Българските преходи 1944–2005</em>. ИК „Парадигма", София.</li>
+                <li>Иванов, М. (2008). <em>Реформаторството без реформи. Комунистическият режим в България 1962–1989 г.</em> Институт за изследване на близкото минало.</li>
+                <li>Тодорова, М. (2013). <em>Вълшебното ланче на паметта. Разказите за социализма в постсоциалистическа България</em>. УИ „Св. Климент Охридски".</li>
+                <li>Петров, П. (1995). <em>Принудителната колективизация в България 1948–1958</em>. София.</li>
+                <li>Националният статистически институт — исторически данни, <a href="https://www.nsi.bg" style="color:var(--accent);">nsi.bg</a></li>
+                <li>Живкова, Л. (1980). <em>Изкуството и красотата</em>. Държавно издателство „Народна просвета", София.</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <a href="index.html" class="nav-logo" style="padding:0;margin-bottom:1rem;display:inline-flex;">
+                <svg class="logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="60" height="60" rx="8" fill="#1a2540"/>
+                    <polygon points="30,5 33.5,18 47,18 36,27 39.5,40 30,31.5 20.5,40 24,27 13,18 26.5,18" fill="#c9a84c"/>
+                    <text x="30" y="55" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="bold" fill="white" letter-spacing="2">НРБ</text>
+                </svg>
+                <div class="logo-text">България<span>1944 – 1989</span></div>
+            </a>
+            <p>Образователен уебсайт, посветен на историята на Народна Република България. Всички материали имат академичен и историко-образователен характер.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Навигация</h4>
+            <ul>
+                <li><a href="index.html">Начало</a></li>
+                <li><a href="history.html">Хронология</a></li>
+                <li><a href="politics.html">Политика</a></li>
+                <li><a href="culture.html">Икономика и Култура</a></li>
+                <li><a href="blog-forum.html">Блог и Форум</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Раздели</h4>
+            <ul>
+                <li><a href="#economy">Планова икономика</a></li>
+                <li><a href="#culture-section">Изкуство и Кино</a></li>
+                <li><a href="#sports">Спорт</a></li>
+                <li><a href="culture.html">Образование</a></li>
+            </ul>
+        </div>
+        <div class="footer-col footer-contact">
+            <h4>Контакти</h4>
+            <p>📧 <a href="mailto:info@bulgaria1944-1989.bg">info@bulgaria1944-1989.bg</a></p>
+            <p>📞 <a href="tel:+35929876543">+359 2 987 65 43</a></p>
+            <p>📍 София 1000, бул. „Витоша" 1</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2024 България 1944–1989 | Образователен проект</span>
+        <span>Всички права запазени · Материалите са под Creative Commons</span>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
